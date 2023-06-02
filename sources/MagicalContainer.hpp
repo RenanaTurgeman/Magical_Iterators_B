@@ -31,24 +31,22 @@ namespace ariel{
 
         public:
 
-            AscendingIterator(const AscendingIterator& copy_container);
-            AscendingIterator() = delete;
-            ~AscendingIterator();
+            AscendingIterator(const AscendingIterator& copy_container);     // Copy constructor
+            AscendingIterator() = delete;     // Default constructor (deleted)
+            ~AscendingIterator();     // Destructor
 
-            AscendingIterator(MagicalContainer& container);
+            AscendingIterator(MagicalContainer& container);     // Constructor
 
-            int& operator*() const;
-            AscendingIterator& operator++();
-            bool operator==(const AscendingIterator& other_iterator) const;
-            bool operator!=(const AscendingIterator& other_iterator) const;
-            // Assignment operator
-            AscendingIterator &operator=(const AscendingIterator &other);
+            int& operator*() const; //Dereference operator
+            AscendingIterator& operator++(); // Pre-increment operator
+            bool operator==(const AscendingIterator& other_iterator) const; //Equality comparison
+            bool operator!=(const AscendingIterator& other_iterator) const; // Inequality comparison
+            AscendingIterator &operator=(const AscendingIterator &other);   // Assignment operator
+            // GT, LT comparison:
             bool operator>(const AscendingIterator& other) const ;
             bool operator<(const AscendingIterator& other) const ;
 
-
-                // Move assignment operator
-            AscendingIterator &operator=(AscendingIterator &&other) noexcept;
+            AscendingIterator &operator=(AscendingIterator &&other);  // Move assignment operator
             AscendingIterator begin() const;
             AscendingIterator end() const;
             int getCurrentIndex() const;
@@ -64,23 +62,22 @@ namespace ariel{
 
         public:
 
-            SideCrossIterator(const SideCrossIterator& other_container);
-            SideCrossIterator(const SideCrossIterator&& other_container) noexcept;
-            SideCrossIterator() =delete;
-            ~SideCrossIterator();
-            SideCrossIterator(MagicalContainer& container);
+            SideCrossIterator(const SideCrossIterator& other_container); // Copy constructor
+            SideCrossIterator(const SideCrossIterator&& other_container) noexcept; // Move constructor
+            SideCrossIterator() =delete; // Constructor
+            ~SideCrossIterator(); // Destructor
+            SideCrossIterator(MagicalContainer& container); // Constructor
 
-            int& operator*() const;
-            SideCrossIterator& operator++();
-            bool operator==(const SideCrossIterator& other_iterator) const;
-            bool operator!=(const SideCrossIterator& other_iterator) const;
+            int& operator*() const; //Dereference operator
+            SideCrossIterator& operator++(); // Pre-increment operator
+            bool operator==(const SideCrossIterator& other_iterator) const; //Equality comparison
+            bool operator!=(const SideCrossIterator& other_iterator) const; // Inequality comparison
+            // GT, LT comparison:
             bool operator>(const SideCrossIterator& other_iterator) const;
             bool operator<(const SideCrossIterator& other_iterator) const;
-            // Assignment operator
-            SideCrossIterator &operator=(const SideCrossIterator &other);
+            SideCrossIterator &operator=(const SideCrossIterator &other); // Assignment operator
+            SideCrossIterator &operator=(SideCrossIterator &&other) ;  // Move assignment operator
 
-            // Move assignment operator
-            SideCrossIterator &operator=(SideCrossIterator &&other) noexcept;
             SideCrossIterator begin() const;
             SideCrossIterator end() const;
             MagicalContainer& getContainer() const;
@@ -99,25 +96,23 @@ namespace ariel{
 
         public:
 
-            PrimeIterator(const PrimeIterator& other_container);
-            ~PrimeIterator();
+            PrimeIterator(const PrimeIterator& other_container); // Copy constructorbv
+            ~PrimeIterator(); // Destructor
+            PrimeIterator(MagicalContainer& container); // Constructor
+            PrimeIterator(PrimeIterator &&other) noexcept; // Move constructor
 
-            PrimeIterator(MagicalContainer& container);
-            PrimeIterator(PrimeIterator &&other) noexcept;
-            int operator*() const;
-            PrimeIterator& operator++();
-            bool operator==(const PrimeIterator& other_iterator) const;
-            bool operator!=(const PrimeIterator& other_iterator) const;
+            int operator*() const; //Dereference operator
+            PrimeIterator& operator++(); // Pre-increment operator
+            bool operator==(const PrimeIterator& other_iterator) const; //Equality comparison
+            bool operator!=(const PrimeIterator& other_iterator) const;// Inequality comparison
+            // GT, LT comparison:
             bool operator>(const PrimeIterator& other_iterator) const;
             bool operator<(const PrimeIterator& other_iterator) const;
-            // Assignment operator
-            PrimeIterator &operator=(const PrimeIterator &other);
+            PrimeIterator &operator=(const PrimeIterator &other); // Assignment operator
             MagicalContainer& getContainer() const;
             int getCurrentIndex() const;
 
-
-            // Move assignment operator
-            PrimeIterator &operator=(PrimeIterator &&other) noexcept;
+            PrimeIterator &operator=(PrimeIterator &&other) ; // Move assignment operator
             PrimeIterator begin() const;
             PrimeIterator end() const;
 

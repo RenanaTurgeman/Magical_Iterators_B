@@ -9,16 +9,20 @@ using namespace ariel;
 
 // SideCrossIterator implementation
 
+// Copy constructor
 MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator& other_iterator)
         : container(other_iterator.container), index(other_iterator.index) {}
 
+// Destructor
 MagicalContainer::SideCrossIterator::~SideCrossIterator() = default;
 
 MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer& container)
         : container(container), index(0) {
+    // Sort the elements in ascending order
     std::vector<int> sortedElements = container.getElements();
     std::sort(sortedElements.begin(), sortedElements.end());
 
+    // Create a vector of elements in side-cross pattern
     std::vector<int> crossElements(sortedElements.size());
     size_t start = 0;
     size_t end = sortedElements.size() - 1;
@@ -84,12 +88,4 @@ MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operat
     }
     index = other.index;
     return *this;
-}
-
-MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator=(SideCrossIterator&& other) noexcept {
-if (this != &other) {
-container = other.container;
-index = other.index;
-}
-return *this;
 }

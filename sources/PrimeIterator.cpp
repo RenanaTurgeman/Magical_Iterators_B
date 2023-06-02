@@ -66,14 +66,6 @@ MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator=(cons
     return *this;
 }
 
-MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator=(PrimeIterator&& other) noexcept {
-if (this != &other) {
-container = other.container;
-index = other.index;
-}
-return *this;
-}
-
 MagicalContainer::PrimeIterator MagicalContainer::PrimeIterator::begin() const {
     return PrimeIterator(container);
 }
