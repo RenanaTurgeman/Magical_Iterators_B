@@ -19,6 +19,9 @@ int& MagicalContainer::AscendingIterator::operator*() const {
 }
 
 MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() {
+    if (index >= container.size()) {
+        throw std::runtime_error("Iterator is already at the end");
+    }
     ++index;
     return *this;
 }
@@ -42,10 +45,10 @@ MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end() c
 }
 
 MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(const AscendingIterator& other) {
-    if (this != &other) {
-        container = other.container;
-        index = other.index;
+    if (&container != &other.container) {
+        throw std::runtime_error("Iterators are pointing to different containers.");
     }
+    index = other.index;
     return *this;
 }
 

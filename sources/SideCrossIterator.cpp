@@ -37,6 +37,9 @@ int& MagicalContainer::SideCrossIterator::operator*() const {
 }
 
 MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator++() {
+    if (index >= container.size()) {
+        throw std::runtime_error("Iterator is already at the end");
+    }
     ++index;
     return *this;
 }
@@ -76,10 +79,10 @@ MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::end() c
 }
 
 MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator=(const SideCrossIterator& other) {
-    if (this != &other) {
-        container = other.container;
-        index = other.index;
+    if (&container != &other.container) {
+        throw std::runtime_error("Iterators are pointing to different containers.");
     }
+    index = other.index;
     return *this;
 }
 
