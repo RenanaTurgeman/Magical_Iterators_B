@@ -26,11 +26,16 @@ void MagicalContainer::setElements(std::vector<int> elements) {
 }
 
 void MagicalContainer::addElement(int element) {
-    elements.push_back(element);
+    auto it = std::lower_bound(elements.begin(), elements.end(), element); // for inserts elements in ascending order
+    elements.insert(it, element);
 }
 
 void MagicalContainer::removeElement(int element) {
-    elements.erase(std::remove(elements.begin(), elements.end(), element), elements.end());
+    auto it = std::find(elements.begin(), elements.end(), element);
+    if (it == elements.end()) {
+        throw runtime_error("Element not found");
+    }
+    elements.erase(it);
 }
 
 int MagicalContainer::size() const {
