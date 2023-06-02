@@ -3,11 +3,19 @@ using namespace std;
 using namespace ariel;
 // MagicalContainer implementation
 
-MagicalContainer::MagicalContainer() = default; // Default constructor
 
-MagicalContainer::MagicalContainer(const MagicalContainer& other) = default; // Copy constructor
+MagicalContainer::MagicalContainer() {
+    // Default constructor
+}
 
-MagicalContainer::~MagicalContainer() = default; // Destructor
+MagicalContainer::MagicalContainer(const MagicalContainer& other) {
+    // Copy constructor
+    elements = other.elements;
+}
+
+MagicalContainer::~MagicalContainer() {
+    // Destructor
+}
 
 std::vector<int>& MagicalContainer::getElements() {
     return elements;
@@ -22,16 +30,9 @@ void MagicalContainer::addElement(int element) {
 }
 
 void MagicalContainer::removeElement(int element) {
-    auto it = std::find(elements.begin(), elements.end(), element);
-    if (it != elements.end()) {
-        elements.erase(it);
-    }
-//    else {
-//        throw std::invalid_argument("Element not found in the container.");
-//    }
+    elements.erase(std::remove(elements.begin(), elements.end(), element), elements.end());
 }
 
 int MagicalContainer::size() const {
     return elements.size();
 }
-

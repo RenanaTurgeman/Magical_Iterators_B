@@ -7,22 +7,12 @@ using namespace std;
 using namespace ariel;
 
 
-// Move constructor
-MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator &&other) noexcept : container(other.getContainer()), index(other.getCurrentIndex()) {
-}
+// SideCrossIterator implementation
 
-MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator::operator=(const SideCrossIterator &other){
-    return *this;
-}
+MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator& other_iterator)
+        : container(other_iterator.container), index(other_iterator.index) {}
 
-// Move assignment operator
-MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator::operator=(SideCrossIterator &&other) noexcept {
-return *this;
-}
-MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator& other_container)
-        : container(other_container.container), index(other_container.index) {}
-
-MagicalContainer::SideCrossIterator::~SideCrossIterator() = default; // Destructor
+MagicalContainer::SideCrossIterator::~SideCrossIterator() = default;
 
 MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer& container)
         : container(container), index(0) {
@@ -51,20 +41,20 @@ MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operat
     return *this;
 }
 
-bool MagicalContainer::SideCrossIterator::operator==(const SideCrossIterator& other) const {
-    return index == other.index;
+bool MagicalContainer::SideCrossIterator::operator==(const SideCrossIterator& other_iterator) const {
+    return index == other_iterator.index;
 }
 
-bool MagicalContainer::SideCrossIterator::operator!=(const SideCrossIterator& other) const {
-    return index != other.index;
+bool MagicalContainer::SideCrossIterator::operator!=(const SideCrossIterator& other_iterator) const {
+    return index != other_iterator.index;
 }
 
-bool MagicalContainer::SideCrossIterator::operator>(const SideCrossIterator& other) const {
-    return index > other.index;
+bool MagicalContainer::SideCrossIterator::operator>(const SideCrossIterator& other_iterator) const {
+    return index > other_iterator.index;
 }
 
-bool MagicalContainer::SideCrossIterator::operator<(const SideCrossIterator& other) const {
-    return index < other.index;
+bool MagicalContainer::SideCrossIterator::operator<(const SideCrossIterator& other_iterator) const {
+    return index < other_iterator.index;
 }
 
 MagicalContainer& MagicalContainer::SideCrossIterator::getContainer() const {
@@ -83,4 +73,20 @@ MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::end() c
     SideCrossIterator it(container);
     it.index = container.size();
     return it;
+}
+
+MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator=(const SideCrossIterator& other) {
+    if (this != &other) {
+        container = other.container;
+        index = other.index;
+    }
+    return *this;
+}
+
+MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator=(SideCrossIterator&& other) noexcept {
+if (this != &other) {
+container = other.container;
+index = other.index;
+}
+return *this;
 }

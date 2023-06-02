@@ -43,8 +43,11 @@ namespace ariel{
             bool operator!=(const AscendingIterator& other_iterator) const;
             // Assignment operator
             AscendingIterator &operator=(const AscendingIterator &other);
+            bool operator>(const AscendingIterator& other) const ;
+            bool operator<(const AscendingIterator& other) const ;
 
-            // Move assignment operator
+
+                // Move assignment operator
             AscendingIterator &operator=(AscendingIterator &&other) noexcept;
             AscendingIterator begin() const;
             AscendingIterator end() const;

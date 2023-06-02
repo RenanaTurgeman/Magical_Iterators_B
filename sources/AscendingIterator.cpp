@@ -6,26 +6,13 @@ using namespace std;
 using namespace ariel;
 // AscendingIterator implementation
 
-MagicalContainer& MagicalContainer::AscendingIterator::getContainer() const {
-    return container;
-}
+MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator& copy_iterator)
+        : container(copy_iterator.container), index(copy_iterator.index) {}
 
-int MagicalContainer::AscendingIterator::getCurrentIndex() const {
-    return index;
-}
-
-
-MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator& copy_container)
-        : container(copy_container.container), index(copy_container.index) {}
-
-MagicalContainer::AscendingIterator::~AscendingIterator() = default; // Destructor
+MagicalContainer::AscendingIterator::~AscendingIterator() = default;
 
 MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer& container)
-        : container(container), index(0) {
-    std::vector<int> sortedElements = container.getElements();
-    std::sort(sortedElements.begin(), sortedElements.end());
-    container.setElements(sortedElements);
-}
+        : container(container), index(0) {}
 
 int& MagicalContainer::AscendingIterator::operator*() const {
     return container.getElements()[static_cast<std::vector<int>::size_type>(index)];
@@ -54,11 +41,26 @@ MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end() c
     return it;
 }
 
-MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::operator=(const AscendingIterator &other){
+MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(const AscendingIterator& other) {
+    if (this != &other) {
+        container = other.container;
+        index = other.index;
+    }
     return *this;
 }
 
-// Move assignment operator
-MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::operator=(AscendingIterator &&other) noexcept {
+MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(AscendingIterator&& other) noexcept {
+if (this != &other) {
+container = other.container;
+index = other.index;
+}
 return *this;
+}
+
+bool MagicalContainer::AscendingIterator::operator<(const AscendingIterator& other) const {
+    return index < other.index;
+}
+
+bool MagicalContainer::AscendingIterator::operator>(const AscendingIterator& other) const {
+    return index > other.index;
 }
