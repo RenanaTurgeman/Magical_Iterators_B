@@ -11,17 +11,53 @@ namespace ariel{
 
     private:
         std::vector<int> elements;
+        std::vector<int*> primeElements;
+        bool static isPrime(int n);
+
     public:
         MagicalContainer(); // Default constructor
         MagicalContainer(const MagicalContainer& other); // Copy constructor
         ~MagicalContainer(); // Destructor
 
         std::vector<int>& getElements();
-        void setElements(std::vector<int> elements);
+        void setElements(std::vector<int>& elements);
         void addElement(int element);
         void removeElement(int element);
         int size() const;
+        std::vector<int*>& getPrimeElements();
 
+        class MyIterator {
+        private:
+            MagicalContainer& container;
+            int index;
+            //todo: bool move?
+            bool move;
+
+        public:
+            MyIterator(MagicalContainer& container); //constructor
+            MyIterator(const MyIterator& other); //copy constructor
+            virtual ~MyIterator() = default;
+
+            int getIndex() const;
+            void setIndex(int other);
+            MagicalContainer& getMyContainer() const;
+            bool getMove() const;
+            void setMove(bool move);
+
+            virtual int& operator*() const; //Dereference operator
+            virtual MyIterator& operator++(); // Pre-increment operator
+            virtual MyIterator& begin() const;
+            virtual MyIterator& end() const;
+            bool operator==(const MyIterator& other_iterator) const; //Equality comparison
+            bool operator!=(const MyIterator& other_iterator) const; // Inequality comparison
+            AscendingIterator &operator=(const MyIterator &other);   // Assignment operator
+            // GT, LT comparison:
+            bool operator>(const MyIterator& other) const ;
+            bool operator<(const MyIterator& other) const ;
+
+            MyIterator &operator=(MyIterator &&other);  // Move assignment operator
+            MyIterator(MyIterator&& other) noexcept; //move constructor
+        };
 
         class AscendingIterator {
 
@@ -92,7 +128,6 @@ namespace ariel{
 
             MagicalContainer& container;
             int index;
-            bool isPrime(int n);
 
         public:
 

@@ -21,7 +21,7 @@ std::vector<int>& MagicalContainer::getElements() {
     return elements;
 }
 
-void MagicalContainer::setElements(std::vector<int> elements) {
+void MagicalContainer::setElements(std::vector<int>& elements) {
     this->elements = std::move(elements);
 }
 
@@ -40,4 +40,20 @@ void MagicalContainer::removeElement(int element) {
 
 int MagicalContainer::size() const {
     return elements.size();
+}
+
+bool MagicalContainer::isPrime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    for (int i = 2; i * i <= n; ++i) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::vector<int*>& MagicalContainer::getPrimeElements(){
+    return this->primeElements;
 }
