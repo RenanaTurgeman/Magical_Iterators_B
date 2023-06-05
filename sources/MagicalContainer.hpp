@@ -55,7 +55,7 @@ namespace ariel{
             bool operator>(const MyIterator& other) const ;
             bool operator<(const MyIterator& other) const ;
 
-            MyIterator &operator=(MyIterator &&other);  // Move assignment operator
+            MyIterator &operator=(MyIterator &&other) noexcept;  // Move assignment operator
             MyIterator(MyIterator&& other) noexcept; //move constructor
         };
 

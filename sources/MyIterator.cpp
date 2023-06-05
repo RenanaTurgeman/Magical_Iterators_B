@@ -24,3 +24,37 @@ bool MagicalContainer::MyIterator::getMove() const{
 void MagicalContainer::MyIterator::setMove(bool move){
     this->move = move;
 }
+
+virtual int& MagicalContainer::MyIterator::operator*() const = 0; //Dereference operator
+virtual MyIterator& MagicalContainer::MyIterator::operator++() =0; // Pre-increment operator
+virtual MyIterator& MagicalContainer::MyIterator::begin() const =0;
+virtual MyIterator& MagicalContainer::MyIterator::end() const = 0;
+bool MagicalContainer::MyIterator::operator==(const MyIterator& other_iterator) const{
+    if (typeid(*this) != typeid(other_iterator)) {
+        throw std::runtime_error("Cannot compare iterators of different types");
+    }
+
+    return container == other_iterator.container && index == other_iterator.index;
+} //Equality comparison
+bool MagicalContainer::MyIterator::operator!=(const MyIterator& other_iterator) const{
+    return !(*this == other_iterator);
+} // Inequality comparison
+AscendingIterator& MagicalContainer::MyIterator::operator=(const MyIterator &other);   // Assignment operator
+// GT, LT comparison:
+bool MagicalContainer::MyIterator::operator>(const MyIterator& other) const {
+    return index > other.index;
+}
+bool MagicalContainer::MyIterator::operator<(const MyIterator& other) const{
+    return index < other.index;
+}
+
+MyIterator& MagicalContainer::MyIterator::operator=(MyIterator &&other) noexcept {
+    if(this != &other) {
+        this->container = std::move(other.container);
+        this->index = other.index;
+        this->move = other.move;
+    }
+    return *this;
+}  // Move assignment operator
+MagicalContainer::MyIterator::MyIterator(MyIterator&& other) noexcept
+    : container(other.container), index(other.index), move(move) ; //move constructor
