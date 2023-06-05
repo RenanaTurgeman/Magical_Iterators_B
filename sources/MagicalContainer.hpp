@@ -43,13 +43,13 @@ namespace ariel{
             bool getMove() const;
             void setMove(bool move);
 
-            int& operator*() const; //Dereference operator
+            virtual int& operator*() const; //Dereference operator
             virtual MyIterator& operator++(); // Pre-increment operator
-            virtual MyIterator& begin() const override;
-            virtual MyIterator& end() const override;
+            virtual MyIterator& begin() const;
+            virtual MyIterator& end() const;
             bool operator==(const MyIterator& other_iterator) const; //Equality comparison
             bool operator!=(const MyIterator& other_iterator) const; // Inequality comparison
-            AscendingIterator &operator=(const MyIterator &other);   // Assignment operator
+            MyIterator &operator=(const MyIterator &other);   // Assignment operator
             // GT, LT comparison:
             bool operator>(const MyIterator& other) const ;
             bool operator<(const MyIterator& other) const ;
@@ -120,7 +120,7 @@ namespace ariel{
             PrimeIterator(MagicalContainer& container); // Constructor
             PrimeIterator(PrimeIterator &&other) noexcept; // Move constructor
 
-            int operator*() const override; //Dereference operator
+            int& operator*() const override; //Dereference operator
             PrimeIterator& operator++() override; // Pre-increment operator
            /* bool operator==(const PrimeIterator& other_iterator) const; //Equality comparison
             bool operator!=(const PrimeIterator& other_iterator) const;// Inequality comparison
