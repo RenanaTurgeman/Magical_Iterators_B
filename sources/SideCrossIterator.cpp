@@ -29,7 +29,7 @@ MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operat
     if (this->getIndex() >= this->getMyContainer().size()) {
         throw std::runtime_error("Iterator is already at the end");
     }
-    this ->setMove(true);
+
    if(this->getMove()){ //move = true
        this ->setMove(false);
        if(getIndex() == getMyContainer().getElements().size() /2){
@@ -37,6 +37,9 @@ MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operat
        }else{
            setIndex(getIndex()+1);
        }
+   }
+   else{
+       this->setMove(true);
    }
     return *this;
 }

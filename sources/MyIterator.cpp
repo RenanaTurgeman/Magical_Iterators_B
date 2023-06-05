@@ -8,7 +8,7 @@ using namespace std;
 
 MagicalContainer::MyIterator::MyIterator(MagicalContainer& container) : container(container), index(0), move(true){}
 
-MagicalContainer::MyIterator::MyIterator(const MyIterator& other) : container(other.container), index(other.index), move(other.index) {}
+MagicalContainer::MyIterator::MyIterator(const MyIterator& other) : container(other.container), index(other.index), move(other.move) {}
 
 int MagicalContainer::MyIterator::getIndex() const{
     return index;
@@ -27,10 +27,10 @@ void MagicalContainer::MyIterator::setMove(bool move){
     this->move = move;
 }
 
-int& MagicalContainer::MyIterator::operator*() const {
-    // Returns a reference to the value at the iterator's current position
-    return container.getElements()[static_cast<std::vector<int>::size_type>(index)];
-} //Dereference operator
+//int& MagicalContainer::MyIterator::operator*() const {
+//    // Returns a reference to the value at the iterator's current position
+//    return container.getElements()[static_cast<std::vector<int>::size_type>(index)];
+//} //Dereference operator
 
 bool MagicalContainer::MyIterator::operator==(const MyIterator& other_iterator) const{
     if (typeid(*this) != typeid(other_iterator)) {

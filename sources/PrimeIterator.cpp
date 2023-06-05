@@ -13,12 +13,12 @@ MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer& container)
         : MyIterator(container) {}
 
 int& MagicalContainer::PrimeIterator::operator*() const {
-    return this->getMyContainer().getElements()[static_cast<std::vector<int>::size_type>(this->getIndex())];
+    return *(this->getMyContainer().getPrimeElements()[(size_t)(this->getIndex())]);
 }
 
 MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator++() {
     // Move to the next prime element
-    if (this->getIndex() >= this->getMyContainer().size()) {
+    if (this->getIndex() >= this->getMyContainer().getPrimeElements().size()) {
         throw std::runtime_error("Iterator has reached the end.");
     }
 
@@ -32,6 +32,6 @@ MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::begin() {
 }
 
 MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::end() {
-    this->setIndex(this->getMyContainer().getElements().size());
+    this->setIndex(this->getMyContainer().getPrimeElements().size());
     return *this;
 }

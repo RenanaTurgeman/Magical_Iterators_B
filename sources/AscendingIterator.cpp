@@ -16,6 +16,11 @@ MagicalContainer::AscendingIterator::~AscendingIterator() = default;
 MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer& container)
         : MyIterator(container) {}
 
+int& MagicalContainer::AscendingIterator::operator*() const {
+    // Returns a reference to the value at the iterator's current position
+    return this->getMyContainer().getElements()[static_cast<std::vector<int>::size_type>(getIndex())];
+} //
+
 // Pre-increment operator (++) overload
 MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() {
     if (this->getIndex() >= this->getMyContainer().getElements().size()) {

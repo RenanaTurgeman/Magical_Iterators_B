@@ -14,7 +14,9 @@ MagicalContainer::MagicalContainer(const MagicalContainer& other) {
 }
 
 MagicalContainer::~MagicalContainer() {
-    // Destructor
+    for(int* element : primeElements){
+        delete element;
+    }
 }
 
 std::vector<int>& MagicalContainer::getElements() {
@@ -28,6 +30,12 @@ void MagicalContainer::setElements(std::vector<int>& elements) {
 void MagicalContainer::addElement(int element) {
     auto it = std::lower_bound(elements.begin(), elements.end(), element); // for inserts elements in ascending order
     elements.insert(it, element);
+
+    if(isPrime(element)){
+        int* find_element = new int(element);
+        auto it = std::lower_bound(primeElements.begin(), primeElements.end(), find_element, [](const int *x,const int *y) { return ((*x) < (*y)); });
+        getPrimeElements().insert(it, find_element);
+    }
 }
 
 void MagicalContainer::removeElement(int element) {
@@ -36,6 +44,14 @@ void MagicalContainer::removeElement(int element) {
         throw runtime_error("Element not found");
     }
     elements.erase(it);
+
+    if(isPrime(element)){
+
+        int* PrimeElement= new int(element);
+        auto it = std::find(primeElements.begin(), primeElements.end(), PrimeElement);
+        primeElements.erase(it);
+        delete PrimeElement;
+    }
 }
 
 int MagicalContainer::size() const {

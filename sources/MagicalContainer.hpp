@@ -43,7 +43,7 @@ namespace ariel{
             bool getMove() const;
             void setMove(bool move);
 
-            virtual int& operator*() const; //Dereference operator
+            virtual int& operator*() const = 0; //Dereference operator
             virtual MyIterator& operator++() = 0; // Pre-increment operator
             virtual MyIterator& begin() =0;
             virtual MyIterator& end() = 0;
@@ -67,7 +67,7 @@ namespace ariel{
             ~AscendingIterator();     // Destructor
 
             AscendingIterator(MagicalContainer& container);     // Constructor
-
+            int& operator*() const override;
             AscendingIterator& operator++() override; // Pre-increment operator
 
             AscendingIterator& begin()  override;
@@ -82,7 +82,7 @@ namespace ariel{
 
             SideCrossIterator(const SideCrossIterator& other_container); // Copy constructor
             SideCrossIterator(const SideCrossIterator&& other_container) noexcept; // Move constructor
-            SideCrossIterator() =delete; // Constructor
+            SideCrossIterator() : MyIterator(this->getMyContainer()) {} // Constructor
             ~SideCrossIterator(); // Destructor
             SideCrossIterator(MagicalContainer& container); // Constructor
 
