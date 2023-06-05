@@ -26,38 +26,6 @@ MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator++() {
     return *this;
 }
 
-/*bool MagicalContainer::PrimeIterator::operator==(const PrimeIterator& other_iterator) const {
-    return index == other_iterator.index;
-}
-
-bool MagicalContainer::PrimeIterator::operator!=(const PrimeIterator& other_iterator) const {
-    return index != other_iterator.index;
-}
-
-bool MagicalContainer::PrimeIterator::operator>(const PrimeIterator& other_iterator) const {
-    return index > other_iterator.index;
-}
-
-bool MagicalContainer::PrimeIterator::operator<(const PrimeIterator& other_iterator) const {
-    return index < other_iterator.index;
-}*/
-
-//MagicalContainer& MagicalContainer::PrimeIterator::getContainer() const {
-//    return container;
-//}
-
-//int MagicalContainer::PrimeIterator::getCurrentIndex() const {
-//    return index;
-//}
-
-/*MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator=(const PrimeIterator& other) {
-    if (&container != &other.container) {
-        throw std::runtime_error("Iterators are pointing to different containers.");
-    }
-    index = other.index;
-    return *this;
-}*/
-
 MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::begin() {
     this->setIndex(0);
     return *this;

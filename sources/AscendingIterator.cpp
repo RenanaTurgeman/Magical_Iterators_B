@@ -26,18 +26,6 @@ MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operat
     return *this;
 }
 
-// Equality operator (==) overload
-/*
-bool MagicalContainer::AscendingIterator::operator==(const AscendingIterator& other_iterator) const {
-    return index == other_iterator.index;
-}
-*/
-
-/*// Inequality operator (!=) overload
-bool MagicalContainer::AscendingIterator::operator!=(const AscendingIterator& other_iterator) const {
-    return index != other_iterator.index;
-}*/
-
 // Begin function to get the iterator pointing to the beginning of the container
 MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::begin() {
     this->setIndex(0);
@@ -49,19 +37,3 @@ MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::end() 
     this->setIndex(this->getMyContainer().getElements().size());
     return *this;
 }
-
-/*MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(const AscendingIterator& other) {
-    if (&container != &other.container) {
-        throw std::runtime_error("Iterators are pointing to different containers.");
-    }
-    index = other.index;
-    return *this;
-}*/
-
-/*bool MagicalContainer::AscendingIterator::operator<(const AscendingIterator& other) const {
-    return index < other.index;
-}
-
-bool MagicalContainer::AscendingIterator::operator>(const AscendingIterator& other) const {
-    return index > other.index;
-}*/

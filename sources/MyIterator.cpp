@@ -31,9 +31,7 @@ int& MagicalContainer::MyIterator::operator*() const {
     // Returns a reference to the value at the iterator's current position
     return container.getElements()[static_cast<std::vector<int>::size_type>(index)];
 } //Dereference operator
-//MagicalContainer::MyIterator& MagicalContainer::MyIterator::operator++() =0; // Pre-increment operator
-//MagicalContainer::MyIterator& MagicalContainer::MyIterator::begin() const =0;
-//MagicalContainer::MyIterator& MagicalContainer::MyIterator::end() const = 0;
+
 bool MagicalContainer::MyIterator::operator==(const MyIterator& other_iterator) const{
     if (typeid(*this) != typeid(other_iterator)) {
         throw std::runtime_error("Cannot compare iterators of different types");

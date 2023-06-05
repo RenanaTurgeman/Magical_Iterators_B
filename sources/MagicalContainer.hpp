@@ -69,14 +69,7 @@ namespace ariel{
             AscendingIterator(MagicalContainer& container);     // Constructor
 
             AscendingIterator& operator++() override; // Pre-increment operator
-            /*bool operator==(const AscendingIterator& other_iterator) const; //Equality comparison
-            bool operator!=(const AscendingIterator& other_iterator) const; // Inequality comparison
-            AscendingIterator &operator=(const AscendingIterator &other);   // Assignment operator
-            // GT, LT comparison:
-            bool operator>(const AscendingIterator& other) const ;
-            bool operator<(const AscendingIterator& other) const ;
-*/
-//            AscendingIterator &operator=(AscendingIterator &&other);  // Move assignment operator
+
             AscendingIterator& begin()  override;
             AscendingIterator& end()  override;
             int getCurrentIndex() const;
@@ -95,19 +88,9 @@ namespace ariel{
 
             int& operator*() const override; //Dereference operator
             SideCrossIterator& operator++() override; // Pre-increment operator
-         /*   bool operator==(const SideCrossIterator& other_iterator) const; //Equality comparison
-            bool operator!=(const SideCrossIterator& other_iterator) const; // Inequality comparison
-            // GT, LT comparison:
-            bool operator>(const SideCrossIterator& other_iterator) const;
-            bool operator<(const SideCrossIterator& other_iterator) const;
-            SideCrossIterator &operator=(const SideCrossIterator &other); // Assignment operator
-            SideCrossIterator &operator=(SideCrossIterator &&other) ;  // Move assignment operator
-*/
+
             SideCrossIterator& begin() override;
             SideCrossIterator& end() override;
-//            MagicalContainer& getContainer() const;
-//            int getCurrentIndex() const;
-
 
         };
 
@@ -122,14 +105,6 @@ namespace ariel{
 
             int& operator*() const override; //Dereference operator
             PrimeIterator& operator++() override; // Pre-increment operator
-           /* bool operator==(const PrimeIterator& other_iterator) const; //Equality comparison
-            bool operator!=(const PrimeIterator& other_iterator) const;// Inequality comparison
-            // GT, LT comparison:
-            bool operator>(const PrimeIterator& other_iterator) const;
-            bool operator<(const PrimeIterator& other_iterator) const;
-            PrimeIterator &operator=(const PrimeIterator &other); */// Assignment operator
-//            MagicalContainer& getContainer() const;
-//            int getCurrentIndex() const;
 
             PrimeIterator &operator=(PrimeIterator &&other) ; // Move assignment operator
             PrimeIterator& begin() override;
