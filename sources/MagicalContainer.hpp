@@ -69,26 +69,21 @@ namespace ariel{
             AscendingIterator(MagicalContainer& container);     // Constructor
 
             AscendingIterator& operator++() override; // Pre-increment operator
-            bool operator==(const AscendingIterator& other_iterator) const; //Equality comparison
+            /*bool operator==(const AscendingIterator& other_iterator) const; //Equality comparison
             bool operator!=(const AscendingIterator& other_iterator) const; // Inequality comparison
             AscendingIterator &operator=(const AscendingIterator &other);   // Assignment operator
             // GT, LT comparison:
             bool operator>(const AscendingIterator& other) const ;
             bool operator<(const AscendingIterator& other) const ;
-
-            AscendingIterator &operator=(AscendingIterator &&other);  // Move assignment operator
-            AscendingIterator& begin() const;
-            AscendingIterator& end() const;
+*/
+//            AscendingIterator &operator=(AscendingIterator &&other);  // Move assignment operator
+            AscendingIterator& begin() const override;
+            AscendingIterator& end() const override;
             int getCurrentIndex() const;
 
-            MagicalContainer& getContainer() const;
         };
 
-        class SideCrossIterator {
-
-        private:
-            MagicalContainer& container;
-            int index;
+        class SideCrossIterator : public MyIterator{
 
         public:
 
@@ -98,20 +93,20 @@ namespace ariel{
             ~SideCrossIterator(); // Destructor
             SideCrossIterator(MagicalContainer& container); // Constructor
 
-            int& operator*() const; //Dereference operator
-            SideCrossIterator& operator++(); // Pre-increment operator
-            bool operator==(const SideCrossIterator& other_iterator) const; //Equality comparison
+            int& operator*() const override; //Dereference operator
+            SideCrossIterator& operator++() override; // Pre-increment operator
+         /*   bool operator==(const SideCrossIterator& other_iterator) const; //Equality comparison
             bool operator!=(const SideCrossIterator& other_iterator) const; // Inequality comparison
             // GT, LT comparison:
             bool operator>(const SideCrossIterator& other_iterator) const;
             bool operator<(const SideCrossIterator& other_iterator) const;
             SideCrossIterator &operator=(const SideCrossIterator &other); // Assignment operator
             SideCrossIterator &operator=(SideCrossIterator &&other) ;  // Move assignment operator
-
-            SideCrossIterator begin() const;
-            SideCrossIterator end() const;
-            MagicalContainer& getContainer() const;
-            int getCurrentIndex() const;
+*/
+            SideCrossIterator& begin() const override;
+            SideCrossIterator& end() const override;
+//            MagicalContainer& getContainer() const;
+//            int getCurrentIndex() const;
 
 
         };
