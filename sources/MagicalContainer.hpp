@@ -44,9 +44,9 @@ namespace ariel{
             void setMove(bool move);
 
             virtual int& operator*() const; //Dereference operator
-            virtual MyIterator& operator++(); // Pre-increment operator
-            virtual MyIterator& begin() const;
-            virtual MyIterator& end() const;
+            virtual MyIterator& operator++() = 0; // Pre-increment operator
+            virtual MyIterator& begin() =0;
+            virtual MyIterator& end() = 0;
             bool operator==(const MyIterator& other_iterator) const; //Equality comparison
             bool operator!=(const MyIterator& other_iterator) const; // Inequality comparison
             MyIterator &operator=(const MyIterator &other);   // Assignment operator
@@ -77,8 +77,8 @@ namespace ariel{
             bool operator<(const AscendingIterator& other) const ;
 */
 //            AscendingIterator &operator=(AscendingIterator &&other);  // Move assignment operator
-            AscendingIterator& begin() const override;
-            AscendingIterator& end() const override;
+            AscendingIterator& begin()  override;
+            AscendingIterator& end()  override;
             int getCurrentIndex() const;
 
         };
@@ -103,8 +103,8 @@ namespace ariel{
             SideCrossIterator &operator=(const SideCrossIterator &other); // Assignment operator
             SideCrossIterator &operator=(SideCrossIterator &&other) ;  // Move assignment operator
 */
-            SideCrossIterator& begin() const override;
-            SideCrossIterator& end() const override;
+            SideCrossIterator& begin() override;
+            SideCrossIterator& end() override;
 //            MagicalContainer& getContainer() const;
 //            int getCurrentIndex() const;
 
@@ -115,7 +115,7 @@ namespace ariel{
 
         public:
 
-//            PrimeIterator(const PrimeIterator& other_container); // Copy constructor
+            PrimeIterator(const PrimeIterator& other_container); // Copy constructor //todo: why he dont get from the base class
             ~PrimeIterator(); // Destructor
             PrimeIterator(MagicalContainer& container); // Constructor
             PrimeIterator(PrimeIterator &&other) noexcept; // Move constructor
@@ -132,8 +132,8 @@ namespace ariel{
 //            int getCurrentIndex() const;
 
             PrimeIterator &operator=(PrimeIterator &&other) ; // Move assignment operator
-            PrimeIterator& begin() const override;
-            PrimeIterator& end() const override;
+            PrimeIterator& begin() override;
+            PrimeIterator& end() override;
 
         };
     };//magical

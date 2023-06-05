@@ -4,25 +4,25 @@ using namespace ariel;
 
 // PrimeIterator implementation
 
-//MagicalContainer::PrimeIterator::PrimeIterator(const PrimeIterator& other_iterator)
-//        : container(other_iterator.container), index(other_iterator.index) {}
+MagicalContainer::PrimeIterator::PrimeIterator(const PrimeIterator& other_iterator)
+        : MyIterator(other_iterator) {}
 
 MagicalContainer::PrimeIterator::~PrimeIterator() {}
 
 MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer& container)
         : MyIterator(container) {}
 
-int MagicalContainer::PrimeIterator::operator*() const {
-    return this->getMyContainer().getElements()[static_cast<std::vector<int>::size_type>(index)];
+int& MagicalContainer::PrimeIterator::operator*() const {
+    return this->getMyContainer().getElements()[static_cast<std::vector<int>::size_type>(this->getIndex())];
 }
 
 MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator++() {
     // Move to the next prime element
-    if (this->getIndex() >= this->getContainer().size()) {
+    if (this->getIndex() >= this->getMyContainer().size()) {
         throw std::runtime_error("Iterator has reached the end.");
     }
 
-    this->setIndex(++this->getIndex());
+    this->setIndex(this->getIndex()+1);
     return *this;
 }
 
@@ -58,12 +58,12 @@ bool MagicalContainer::PrimeIterator::operator<(const PrimeIterator& other_itera
     return *this;
 }*/
 
-MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::begin() const {
+MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::begin() {
     this->setIndex(0);
     return *this;
 }
 
-MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::end() const {
+MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::end() {
     this->setIndex(this->getMyContainer().getElements().size());
-    return it;
+    return *this;
 }

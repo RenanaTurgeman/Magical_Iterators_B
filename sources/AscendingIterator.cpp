@@ -8,7 +8,7 @@ using namespace ariel;
 
 // AscendingIterator copy constructor
 MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator& copy_iterator)
-        : container(copy_iterator.container), index(copy_iterator.index) {}
+        : MyIterator(copy_iterator.getMyContainer()){}
 
 // AscendingIterator destructor
 MagicalContainer::AscendingIterator::~AscendingIterator() = default;
@@ -17,12 +17,12 @@ MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer& contain
         : MyIterator(container) {}
 
 // Pre-increment operator (++) overload
-MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() override{
+MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() {
     if (this->getIndex() >= this->getMyContainer().getElements().size()) {
         throw std::runtime_error("Iterator is already at the end");
     }
     //update he index +1
-    this->setIndex(++this->getIndex());
+    this->setIndex(this->getIndex()+1);
     return *this;
 }
 
@@ -39,13 +39,13 @@ bool MagicalContainer::AscendingIterator::operator!=(const AscendingIterator& ot
 }*/
 
 // Begin function to get the iterator pointing to the beginning of the container
-MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::begin() const override {
+MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::begin() {
     this->setIndex(0);
     return *this;
 }
 
 // End function to get the iterator pointing to the end of the container
-MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::end() const override{
+MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::end() {
     this->setIndex(this->getMyContainer().getElements().size());
     return *this;
 }

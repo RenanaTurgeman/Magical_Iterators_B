@@ -3,6 +3,8 @@
 //
 
 #include "MagicalContainer.hpp"
+using namespace ariel;
+using namespace std;
 
 MagicalContainer::MyIterator::MyIterator(MagicalContainer& container) : container(container), index(0), move(true){}
 
@@ -29,20 +31,26 @@ int& MagicalContainer::MyIterator::operator*() const {
     // Returns a reference to the value at the iterator's current position
     return container.getElements()[static_cast<std::vector<int>::size_type>(index)];
 } //Dereference operator
-virtual MyIterator& MagicalContainer::MyIterator::operator++() =0; // Pre-increment operator
-virtual MyIterator& MagicalContainer::MyIterator::begin() const =0;
-virtual MyIterator& MagicalContainer::MyIterator::end() const = 0;
+//MagicalContainer::MyIterator& MagicalContainer::MyIterator::operator++() =0; // Pre-increment operator
+//MagicalContainer::MyIterator& MagicalContainer::MyIterator::begin() const =0;
+//MagicalContainer::MyIterator& MagicalContainer::MyIterator::end() const = 0;
 bool MagicalContainer::MyIterator::operator==(const MyIterator& other_iterator) const{
     if (typeid(*this) != typeid(other_iterator)) {
         throw std::runtime_error("Cannot compare iterators of different types");
     }
 
-    return container == other_iterator.container && index == other_iterator.index;
+    return this->getIndex() == other_iterator.getIndex();
 } //Equality comparison
 bool MagicalContainer::MyIterator::operator!=(const MyIterator& other_iterator) const{
     return !(*this == other_iterator);
 } // Inequality comparison
-AscendingIterator& MagicalContainer::MyIterator::operator=(const MyIterator &other);   // Assignment operator
+MagicalContainer::MyIterator& MagicalContainer::MyIterator::operator=(const MyIterator &other){
+    if (&container != &other.container) {
+        throw std::runtime_error("Iterators are pointing to different containers.");
+    }
+    index = other.index;
+    return *this;
+}   // Assignment operator
 // GT, LT comparison:
 bool MagicalContainer::MyIterator::operator>(const MyIterator& other) const {
     return index > other.index;
@@ -51,7 +59,7 @@ bool MagicalContainer::MyIterator::operator<(const MyIterator& other) const{
     return index < other.index;
 }
 
-MyIterator& MagicalContainer::MyIterator::operator=(MyIterator &&other) noexcept {
+MagicalContainer::MyIterator& MagicalContainer::MyIterator::operator=(MyIterator &&other) noexcept {
     if(this != &other) {
         this->container = std::move(other.container);
         this->index = other.index;
@@ -60,4 +68,4 @@ MyIterator& MagicalContainer::MyIterator::operator=(MyIterator &&other) noexcept
     return *this;
 }  // Move assignment operator
 MagicalContainer::MyIterator::MyIterator(MyIterator&& other) noexcept
-    : container(other.container), index(other.index), move(move) ; //move constructor
+    : container(other.container), index(other.index), move(other.move) {} //move constructor

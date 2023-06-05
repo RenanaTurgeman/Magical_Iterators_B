@@ -16,25 +16,28 @@ using namespace ariel;
 // Destructor
 MagicalContainer::SideCrossIterator::~SideCrossIterator() = default;
 
-MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer& container): MyIterator(0) {}
+MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer& container): MyIterator(container) {}
 
 int& MagicalContainer::SideCrossIterator::operator*() const {
-    if(this->getMove())
+    if (this->getMove()) {
         return this->getMyContainer().getElements()[static_cast<std::vector<int>::size_type>(getIndex())];
-    return this->getMyContainer().getElements()[static_cast<std::vector<int>::size_type>(this->getMyContainer().getElements().size()-this->getIndex())];
+    }
+    return this->getMyContainer().getElements()[static_cast<std::vector<int>::size_type>(static_cast<int>(this->getMyContainer().getElements().size()) - static_cast<int>(getIndex()))];
 }
 
+
+
 MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator++() {
-    if (index >= container.size()) {
+    if (this->getIndex() >= this->getMyContainer().size()) {
         throw std::runtime_error("Iterator is already at the end");
     }
     this ->setMove(true);
    if(this->getMove()){ //move = true
        this ->setMove(false);
        if(getIndex() == getMyContainer().getElements().size() /2){
-           setIndex(getMyContainer().getElements().size())
+           setIndex(getMyContainer().getElements().size());
        }else{
-           setIndex(++getIndex())
+           setIndex(getIndex()+1);
        }
    }
     return *this;
@@ -66,13 +69,13 @@ bool MagicalContainer::SideCrossIterator::operator<(const SideCrossIterator& oth
 //    return index;
 //}
 
-MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::begin() const {
-    this->move(true);
+MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::begin()  {
+    this->setMove(true);
     this->setIndex(0);
     return *this;
 }
 
-MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::end() const {
+MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::end() {
     this->setIndex(false);
     this->setIndex(this->getMyContainer().getElements().size());
     return *this;
