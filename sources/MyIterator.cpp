@@ -25,7 +25,10 @@ void MagicalContainer::MyIterator::setMove(bool move){
     this->move = move;
 }
 
-virtual int& MagicalContainer::MyIterator::operator*() const = 0; //Dereference operator
+int& MagicalContainer::MyIterator::operator*() const {
+    // Returns a reference to the value at the iterator's current position
+    return container.getElements()[static_cast<std::vector<int>::size_type>(index)];
+} //Dereference operator
 virtual MyIterator& MagicalContainer::MyIterator::operator++() =0; // Pre-increment operator
 virtual MyIterator& MagicalContainer::MyIterator::begin() const =0;
 virtual MyIterator& MagicalContainer::MyIterator::end() const = 0;

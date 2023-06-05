@@ -14,57 +14,54 @@ MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator& 
 MagicalContainer::AscendingIterator::~AscendingIterator() = default;
 
 MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer& container)
-        : container(container), index(0) {}
-
-// Dereference operator (*) overload
-int& MagicalContainer::AscendingIterator::operator*() const {
-    // Returns a reference to the value at the iterator's current position
-    return container.getElements()[static_cast<std::vector<int>::size_type>(index)];
-}
+        : MyIterator(container) {}
 
 // Pre-increment operator (++) overload
-MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() {
-    if (index >= container.size()) {
+MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() override{
+    if (this->getIndex() >= this->getMyContainer().getElements().size()) {
         throw std::runtime_error("Iterator is already at the end");
     }
-    ++index;
+    //update he index +1
+    this->setIndex(++this->getIndex());
     return *this;
 }
 
 // Equality operator (==) overload
+/*
 bool MagicalContainer::AscendingIterator::operator==(const AscendingIterator& other_iterator) const {
     return index == other_iterator.index;
 }
+*/
 
-// Inequality operator (!=) overload
+/*// Inequality operator (!=) overload
 bool MagicalContainer::AscendingIterator::operator!=(const AscendingIterator& other_iterator) const {
     return index != other_iterator.index;
-}
+}*/
 
 // Begin function to get the iterator pointing to the beginning of the container
-MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::begin() const {
-    return AscendingIterator(container);
+MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::begin() const override {
+    this->setIndex(0);
+    return *this;
 }
 
 // End function to get the iterator pointing to the end of the container
-MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end() const {
-    AscendingIterator it(container);
-    it.index = container.size();
-    return it;
+MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::end() const override{
+    this->setIndex(this->getMyContainer().getElements().size());
+    return *this;
 }
 
-MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(const AscendingIterator& other) {
+/*MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(const AscendingIterator& other) {
     if (&container != &other.container) {
         throw std::runtime_error("Iterators are pointing to different containers.");
     }
     index = other.index;
     return *this;
-}
+}*/
 
-bool MagicalContainer::AscendingIterator::operator<(const AscendingIterator& other) const {
+/*bool MagicalContainer::AscendingIterator::operator<(const AscendingIterator& other) const {
     return index < other.index;
 }
 
 bool MagicalContainer::AscendingIterator::operator>(const AscendingIterator& other) const {
     return index > other.index;
-}
+}*/

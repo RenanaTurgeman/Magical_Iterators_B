@@ -30,7 +30,6 @@ namespace ariel{
         private:
             MagicalContainer& container;
             int index;
-            //todo: bool move?
             bool move;
 
         public:
@@ -44,10 +43,10 @@ namespace ariel{
             bool getMove() const;
             void setMove(bool move);
 
-            virtual int& operator*() const; //Dereference operator
+            int& operator*() const; //Dereference operator
             virtual MyIterator& operator++(); // Pre-increment operator
-            virtual MyIterator& begin() const;
-            virtual MyIterator& end() const;
+            virtual MyIterator& begin() const override;
+            virtual MyIterator& end() const override;
             bool operator==(const MyIterator& other_iterator) const; //Equality comparison
             bool operator!=(const MyIterator& other_iterator) const; // Inequality comparison
             AscendingIterator &operator=(const MyIterator &other);   // Assignment operator
@@ -59,22 +58,17 @@ namespace ariel{
             MyIterator(MyIterator&& other) noexcept; //move constructor
         };
 
-        class AscendingIterator {
-
-        private:
-            MagicalContainer& container;
-            int index;
+        class AscendingIterator : public MyIterator{
 
         public:
 
-            AscendingIterator(const AscendingIterator& copy_container);     // Copy constructor
+            AscendingIterator(const AscendingIterator& copy_container);  // Copy constructor
             AscendingIterator() = delete;     // Default constructor (deleted)
             ~AscendingIterator();     // Destructor
 
             AscendingIterator(MagicalContainer& container);     // Constructor
 
-            int& operator*() const; //Dereference operator
-            AscendingIterator& operator++(); // Pre-increment operator
+            AscendingIterator& operator++() override; // Pre-increment operator
             bool operator==(const AscendingIterator& other_iterator) const; //Equality comparison
             bool operator!=(const AscendingIterator& other_iterator) const; // Inequality comparison
             AscendingIterator &operator=(const AscendingIterator &other);   // Assignment operator
@@ -83,8 +77,8 @@ namespace ariel{
             bool operator<(const AscendingIterator& other) const ;
 
             AscendingIterator &operator=(AscendingIterator &&other);  // Move assignment operator
-            AscendingIterator begin() const;
-            AscendingIterator end() const;
+            AscendingIterator& begin() const;
+            AscendingIterator& end() const;
             int getCurrentIndex() const;
 
             MagicalContainer& getContainer() const;
