@@ -10,8 +10,8 @@ using namespace ariel;
 // SideCrossIterator implementation
 
 // Copy constructor
-//MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator& other_iterator)
-//        : container(other_iterator.container), index(other_iterator.index) {}
+MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator& other_iterator)
+        : MyIterator(other_iterator) {}
 
 // Destructor
 MagicalContainer::SideCrossIterator::~SideCrossIterator() = default;
