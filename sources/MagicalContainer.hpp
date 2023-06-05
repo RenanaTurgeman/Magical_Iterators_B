@@ -111,34 +111,29 @@ namespace ariel{
 
         };
 
-        class PrimeIterator  {
-
-        private:
-
-            MagicalContainer& container;
-            int index;
+        class PrimeIterator : public MyIterator{
 
         public:
 
-            PrimeIterator(const PrimeIterator& other_container); // Copy constructorbv
+//            PrimeIterator(const PrimeIterator& other_container); // Copy constructor
             ~PrimeIterator(); // Destructor
             PrimeIterator(MagicalContainer& container); // Constructor
             PrimeIterator(PrimeIterator &&other) noexcept; // Move constructor
 
-            int operator*() const; //Dereference operator
-            PrimeIterator& operator++(); // Pre-increment operator
-            bool operator==(const PrimeIterator& other_iterator) const; //Equality comparison
+            int operator*() const override; //Dereference operator
+            PrimeIterator& operator++() override; // Pre-increment operator
+           /* bool operator==(const PrimeIterator& other_iterator) const; //Equality comparison
             bool operator!=(const PrimeIterator& other_iterator) const;// Inequality comparison
             // GT, LT comparison:
             bool operator>(const PrimeIterator& other_iterator) const;
             bool operator<(const PrimeIterator& other_iterator) const;
-            PrimeIterator &operator=(const PrimeIterator &other); // Assignment operator
-            MagicalContainer& getContainer() const;
-            int getCurrentIndex() const;
+            PrimeIterator &operator=(const PrimeIterator &other); */// Assignment operator
+//            MagicalContainer& getContainer() const;
+//            int getCurrentIndex() const;
 
             PrimeIterator &operator=(PrimeIterator &&other) ; // Move assignment operator
-            PrimeIterator begin() const;
-            PrimeIterator end() const;
+            PrimeIterator& begin() const override;
+            PrimeIterator& end() const override;
 
         };
     };//magical
