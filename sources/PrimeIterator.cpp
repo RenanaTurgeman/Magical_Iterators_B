@@ -4,10 +4,10 @@ using namespace ariel;
 
 // PrimeIterator implementation
 
-MagicalContainer::PrimeIterator::PrimeIterator(const PrimeIterator& other_iterator)
-        : MyIterator(other_iterator) {}
+//MagicalContainer::PrimeIterator::PrimeIterator(const PrimeIterator& other_iterator)
+//        : MyIterator(other_iterator) {}
 
-MagicalContainer::PrimeIterator::~PrimeIterator() {}
+//MagicalContainer::PrimeIterator::~PrimeIterator() {}
 
 MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer& container)
         : MyIterator(container) {}

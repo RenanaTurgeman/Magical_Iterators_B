@@ -81,7 +81,7 @@ namespace ariel{
         public:
 
             SideCrossIterator(const SideCrossIterator& other_container); // Copy constructor
-            SideCrossIterator(const SideCrossIterator&& other_container) noexcept; // Move constructor
+//            SideCrossIterator(const SideCrossIterator&& other_container) noexcept; // Move constructor
             SideCrossIterator() : MyIterator(this->getMyContainer()) {} // Constructor
             ~SideCrossIterator(); // Destructor
             SideCrossIterator(MagicalContainer& container); // Constructor
@@ -97,16 +97,11 @@ namespace ariel{
         class PrimeIterator : public MyIterator{
 
         public:
-
-            PrimeIterator(const PrimeIterator& other_container); // Copy constructor //todo: why he dont get from the base class
-            ~PrimeIterator(); // Destructor
             PrimeIterator(MagicalContainer& container); // Constructor
-            PrimeIterator(PrimeIterator &&other) noexcept; // Move constructor
-
             int& operator*() const override; //Dereference operator
             PrimeIterator& operator++() override; // Pre-increment operator
 
-            PrimeIterator &operator=(PrimeIterator &&other) ; // Move assignment operator
+            //PrimeIterator &operator=(PrimeIterator &&other) ; // Move assignment operator
             PrimeIterator& begin() override;
             PrimeIterator& end() override;
 
