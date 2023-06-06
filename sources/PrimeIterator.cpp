@@ -2,17 +2,10 @@
 using namespace std;
 using namespace ariel;
 
-// PrimeIterator implementation
-
-//MagicalContainer::PrimeIterator::PrimeIterator(const PrimeIterator& other_iterator)
-//        : MyIterator(other_iterator) {}
-
-//MagicalContainer::PrimeIterator::~PrimeIterator() {}
-
-MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer& container)
-        : MyIterator(container) {}
+MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer& container): MyIterator(container) {}
 
 int& MagicalContainer::PrimeIterator::operator*() const {
+    //return the element from the prime elements
     return *(this->getMyContainer().getPrimeElements()[(size_t)(this->getIndex())]);
 }
 

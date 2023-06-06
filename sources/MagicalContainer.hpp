@@ -19,11 +19,13 @@ namespace ariel{
         MagicalContainer(const MagicalContainer& other); // Copy constructor
         ~MagicalContainer(); // Destructor
 
-        std::vector<int>& getElements();
-        void setElements(std::vector<int>& elements);
         void addElement(int element);
         void removeElement(int element);
         int size() const;
+
+        //get and set to the vector
+        std::vector<int>& getElements();
+        void setElements(std::vector<int>& elements);
         std::vector<int*>& getPrimeElements();
 
         class MyIterator {
@@ -37,6 +39,7 @@ namespace ariel{
             MyIterator(const MyIterator& other); //copy constructor
             virtual ~MyIterator() = default;
 
+            //getters and setters
             int getIndex() const;
             void setIndex(int other);
             MagicalContainer& getMyContainer() const;
@@ -61,19 +64,16 @@ namespace ariel{
         class AscendingIterator : public MyIterator{
 
         public:
-
+            AscendingIterator(MagicalContainer& container);     // Constructor
             AscendingIterator(const AscendingIterator& copy_container);  // Copy constructor
             AscendingIterator() = delete;     // Default constructor (deleted)
-            ~AscendingIterator();     // Destructor
+            ~AscendingIterator() = default;     // Destructor
 
-            AscendingIterator(MagicalContainer& container);     // Constructor
-            int& operator*() const override;
+            int& operator*() const override; //Dereference operator
             AscendingIterator& operator++() override; // Pre-increment operator
 
             AscendingIterator& begin()  override;
             AscendingIterator& end()  override;
-            int getCurrentIndex() const;
-
         };
 
         class SideCrossIterator : public MyIterator{
@@ -81,9 +81,8 @@ namespace ariel{
         public:
 
             SideCrossIterator(const SideCrossIterator& other_container); // Copy constructor
-//            SideCrossIterator(const SideCrossIterator&& other_container) noexcept; // Move constructor
-            SideCrossIterator() : MyIterator(this->getMyContainer()) {} // Constructor
-            ~SideCrossIterator(); // Destructor
+            SideCrossIterator(); // Constructor
+            ~SideCrossIterator() = default; // Destructor
             SideCrossIterator(MagicalContainer& container); // Constructor
 
             int& operator*() const override; //Dereference operator
@@ -101,7 +100,6 @@ namespace ariel{
             int& operator*() const override; //Dereference operator
             PrimeIterator& operator++() override; // Pre-increment operator
 
-            //PrimeIterator &operator=(PrimeIterator &&other) ; // Move assignment operator
             PrimeIterator& begin() override;
             PrimeIterator& end() override;
 

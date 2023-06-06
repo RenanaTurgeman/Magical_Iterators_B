@@ -4,22 +4,20 @@
 #include "MagicalContainer.hpp"
 using namespace std;
 using namespace ariel;
-// AscendingIterator implementation
+
+//constructor
+MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer& container)
+        : MyIterator(container) {}
 
 // AscendingIterator copy constructor
 MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator& copy_iterator)
         : MyIterator(copy_iterator.getMyContainer()){}
 
-// AscendingIterator destructor
-MagicalContainer::AscendingIterator::~AscendingIterator() = default;
-
-MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer& container)
-        : MyIterator(container) {}
-
+//Dereference operator
 int& MagicalContainer::AscendingIterator::operator*() const {
     // Returns a reference to the value at the iterator's current position
     return this->getMyContainer().getElements()[static_cast<std::vector<int>::size_type>(getIndex())];
-} //
+}
 
 // Pre-increment operator (++) overload
 MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() {
